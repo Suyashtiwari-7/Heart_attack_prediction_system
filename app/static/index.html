@@ -1,0 +1,467 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Secure Heart Attack Prediction System</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    .hidden { display: none; }
+    input, select, button { padding: 10px; margin: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    button { background-color: #007bff; color: white; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    .result { margin-top: 20px; padding: 15px; border-radius: 5px; }
+    .risk-low { background-color: #d4edda; color: #155724; }
+    .risk-medium { background-color: #fff3cd; color: #856404; }
+    .risk-high { background-color: #f8d7da; color: #721c24; }
+    .error { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin: 10px 0; }
+    .success { background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin: 10px 0; }
+    .warning { background-color: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0; }
+    .password-requirements { 
+      background-color: #e9ecef; 
+      padding: 10px; 
+      border-radius: 5px; 
+      margin: 10px 0; 
+      border-left: 4px solid #007bff; 
+    }
+    .password-requirements ul { margin: 5px 0; padding-left: 20px; }
+    .password-requirements li { margin: 2px 0; }
+    .loading { opacity: 0.6; pointer-events: none; }
+    .prevention-tips { background-color: #e7f3ff; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    .prevention-tips ul { margin: 10px 0; }
+    .prevention-tips li { margin: 5px 0; }
+    #trendChart { max-width: 100%; height: 300px; }
+    .chart-container { position: relative; height: 300px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏥 Secure Heart Attack Prediction System</h1>
+    
+    <!-- Authentication Section -->
+    <div id="authSection" class="section">
+      <h2>User Authentication</h2>
+      <div id="loginForm">
+        <h3>Login</h3>
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p><a href="#" onclick="showRegister()">Don't have an account? Register here</a></p>
+      </div>
+      
+      <div id="registerForm" class="hidden">
+        <h3>Register New User</h3>
+        <input type="email" id="regEmail" placeholder="Email (e.g., user@example.com)" required>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <select id="regRole">
+          <option value="Patient">Patient</option>
+          <option value="Doctor">Doctor</option>
+          <option value="Admin">Admin</option>
+        </select>
+        <div class="password-requirements">
+          <small>
+            <strong>Password Requirements:</strong>
+            <ul>
+              <li>At least 8 characters long</li>
+              <li>Must contain uppercase letter</li>
+              <li>Must contain lowercase letter</li>
+              <li>Must contain at least one digit</li>
+              <li>Must contain special character (!@#$%^&*()_+-=[]{}|;:,.<>?)</li>
+            </ul>
+          </small>
+        </div>
+        <button onclick="register()">Register</button>
+        <p><a href="#" onclick="showLogin()">Already have an account? Login here</a></p>
+      </div>
+      
+      <div id="authResult"></div>
+    </div>
+
+    <!-- Patient Data Input Section -->
+    <div id="predictionSection" class="section hidden">
+      <h2>Patient Information & Risk Prediction</h2>
+      <div id="userInfo"></div>
+      
+      <h3>Enter Patient Data</h3>
+      <label>Age: <input type="number" id="age" min="0" max="120" placeholder="e.g., 45" required></label><br>
+      <label>Systolic Blood Pressure: <input type="number" id="systolicBp" min="50" max="300" placeholder="e.g., 120" required></label><br>
+      <label>Diastolic Blood Pressure: <input type="number" id="diastolicBp" min="30" max="200" placeholder="e.g., 80" required></label><br>
+      <label>Cholesterol Level: <input type="number" id="cholesterol" min="50" max="600" placeholder="e.g., 200" required></label><br>
+      <label>Heart Rate: <input type="number" id="heartRate" min="30" max="220" placeholder="e.g., 70" required></label><br>
+      
+      <button onclick="predictRisk()">Predict Heart Attack Risk</button>
+      <button onclick="logout()">Logout</button>
+      
+      <div id="predictionResult"></div>
+    </div>
+
+    <!-- Demo Chart Section -->
+    <div id="chartSection" class="section">
+      <h2>📈 Sample Health Trends</h2>
+      <p>Interactive visualization of patient health metrics over time:</p>
+      <div class="chart-container">
+        <canvas id="trendChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let accessToken = '';
+    let currentUser = '';
+
+    // Show/Hide forms
+    function showRegister() {
+      document.getElementById('loginForm').classList.add('hidden');
+      document.getElementById('registerForm').classList.remove('hidden');
+    }
+    
+    function showLogin() {
+      document.getElementById('registerForm').classList.add('hidden');
+      document.getElementById('loginForm').classList.remove('hidden');
+    }
+
+    // Registration
+    async function register() {
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+      const role = document.getElementById('regRole').value;
+      const resultDiv = document.getElementById('authResult');
+      
+      // Clear previous messages
+      resultDiv.innerHTML = '';
+      
+      // Basic client-side validation
+      if (!email || !password) {
+        resultDiv.innerHTML = '<div class="error">Please fill in all fields</div>';
+        return;
+      }
+      
+      if (!email.includes('@')) {
+        resultDiv.innerHTML = '<div class="error">Please enter a valid email address</div>';
+        return;
+      }
+      
+      if (password.length < 8) {
+        resultDiv.innerHTML = '<div class="error">Password must be at least 8 characters long</div>';
+        return;
+      }
+      
+      // Show loading state
+      const button = event.target;
+      button.classList.add('loading');
+      button.disabled = true;
+      button.textContent = 'Registering...';
+      
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, role })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+          resultDiv.innerHTML = '<div class="success">Registration successful! Please login with your credentials.</div>';
+          showLogin();
+          // Clear form
+          document.getElementById('regEmail').value = '';
+          document.getElementById('regPassword').value = '';
+        } else {
+          resultDiv.innerHTML = `<div class="error">Registration failed: ${result.detail || 'Unknown error'}</div>`;
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        resultDiv.innerHTML = `<div class="error">Network error: ${error.message}</div>`;
+      } finally {
+        // Reset button state
+        button.classList.remove('loading');
+        button.disabled = false;
+        button.textContent = 'Register';
+      }
+    }
+
+    // Login
+    async function login() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const resultDiv = document.getElementById('authResult');
+      
+      // Clear previous messages
+      resultDiv.innerHTML = '';
+      
+      // Basic client-side validation
+      if (!email || !password) {
+        resultDiv.innerHTML = '<div class="error">Please fill in both email and password</div>';
+        return;
+      }
+      
+      if (!email.includes('@')) {
+        resultDiv.innerHTML = '<div class="error">Please enter a valid email address</div>';
+        return;
+      }
+      
+      // Show loading state
+      const button = event.target;
+      button.classList.add('loading');
+      button.disabled = true;
+      button.textContent = 'Logging in...';
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+          accessToken = result.access_token;
+          currentUser = email;
+          document.getElementById('authSection').classList.add('hidden');
+          document.getElementById('predictionSection').classList.remove('hidden');
+          document.getElementById('userInfo').innerHTML = `<div class="success">Logged in as: ${email}</div>`;
+          
+          // Clear form
+          document.getElementById('loginEmail').value = '';
+          document.getElementById('loginPassword').value = '';
+        } else {
+          resultDiv.innerHTML = `<div class="error">Login failed: ${result.detail || 'Invalid credentials'}</div>`;
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        resultDiv.innerHTML = `<div class="error">Network error: ${error.message}</div>`;
+      } finally {
+        // Reset button state
+        button.classList.remove('loading');
+        button.disabled = false;
+        button.textContent = 'Login';
+      }
+    }
+
+    // Predict Risk
+    async function predictRisk() {
+      const age = parseInt(document.getElementById('age').value);
+      const systolic_bp = parseFloat(document.getElementById('systolicBp').value);
+      const diastolic_bp = parseFloat(document.getElementById('diastolicBp').value);
+      const cholesterol = parseFloat(document.getElementById('cholesterol').value);
+      const heart_rate = parseFloat(document.getElementById('heartRate').value);
+      
+      if (!age || !systolic_bp || !diastolic_bp || !cholesterol || !heart_rate) {
+        document.getElementById('predictionResult').innerHTML = '<div class="error">Please fill in all fields</div>';
+        return;
+      }
+      
+      // Validate ranges
+      if (age < 1 || age > 120) {
+        document.getElementById('predictionResult').innerHTML = '<div class="error">Age must be between 1 and 120 years</div>';
+        return;
+      }
+      
+      if (systolic_bp < 50 || systolic_bp > 300) {
+        document.getElementById('predictionResult').innerHTML = '<div class="error">Systolic BP must be between 50 and 300 mmHg</div>';
+        return;
+      }
+      
+      if (diastolic_bp < 30 || diastolic_bp > 200) {
+        document.getElementById('predictionResult').innerHTML = '<div class="error">Diastolic BP must be between 30 and 200 mmHg</div>';
+        return;
+      }
+      
+      if (cholesterol < 50 || cholesterol > 600) {
+        document.getElementById('predictionResult').innerHTML = '<div class="error">Cholesterol must be between 50 and 600 mg/dL</div>';
+        return;
+      }
+      
+      if (heart_rate < 30 || heart_rate > 220) {
+        document.getElementById('predictionResult').innerHTML = '<div class="error">Heart rate must be between 30 and 220 bpm</div>';
+        return;
+      }
+      
+      try {
+        // Add debug logging
+        console.log('Making prediction request with data:', { age, systolic_bp, diastolic_bp, cholesterol, heart_rate });
+        console.log('Using token:', accessToken ? 'Token present' : 'No token');
+        
+        const response = await fetch('/api/predict', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify({ 
+            age, 
+            systolic_bp, 
+            diastolic_bp, 
+            cholesterol, 
+            heart_rate
+            // Let the backend map heart_rate to max_heart_rate internally
+          })
+        });
+        
+        console.log('Response status:', response.status);
+        const result = await response.json();
+        console.log('Response data:', result);
+        
+        if (response.ok) {
+          const riskClass = result.risk_level.toLowerCase();
+          document.getElementById('predictionResult').innerHTML = `
+            <div class="result risk-${riskClass}">
+              <h3>Prediction Result</h3>
+              <p><strong>Risk Level:</strong> ${result.risk_level}</p>
+              <p><strong>Risk Score:</strong> ${(result.risk_probability * 100).toFixed(1)}%</p>
+              <p><strong>Model Used:</strong> ${result.model_used}</p>
+              <p><strong>Confidence:</strong> ${(result.model_confidence * 100).toFixed(1)}%</p>
+              
+              <h4>📊 Patient Data</h4>
+              <ul>
+                <li>Age: ${age} years</li>
+                <li>Blood Pressure: ${systolic_bp}/${diastolic_bp} mmHg</li>
+                <li>Cholesterol: ${cholesterol} mg/dL</li>
+                <li>Heart Rate: ${heart_rate} bpm</li>
+              </ul>
+              
+              <h4>💡 Prevention Recommendations</h4>
+              <div class="prevention-tips">
+                ${getPreventionTips(result.risk_level, result.feature_importance)}
+              </div>
+            </div>
+          `;
+        } else {
+          // Handle error response properly
+          let errorMessage = 'Unknown error';
+          if (typeof result.detail === 'string') {
+            errorMessage = result.detail;
+          } else if (typeof result.detail === 'object') {
+            errorMessage = JSON.stringify(result.detail, null, 2);
+          } else if (result.message) {
+            errorMessage = result.message;
+          }
+          
+          document.getElementById('predictionResult').innerHTML = `<div class="error">Prediction failed: ${errorMessage}</div>`;
+        }
+      } catch (error) {
+        console.error('Prediction error:', error);
+        document.getElementById('predictionResult').innerHTML = `<div class="error">Network Error: ${error.message}</div>`;
+      }
+    }
+
+    // Generate prevention recommendations based on risk level and feature importance
+    function getPreventionTips(riskLevel, featureImportance) {
+      const tips = [];
+      
+      if (riskLevel === 'HIGH') {
+        tips.push('⚠️ <strong>Immediate medical consultation recommended</strong>');
+        tips.push('📞 Contact your cardiologist or primary care physician');
+        tips.push('💊 Ensure medication compliance if prescribed');
+      }
+      
+      if (riskLevel === 'MEDIUM' || riskLevel === 'HIGH') {
+        tips.push('🏃‍♂️ Engage in regular moderate exercise (150+ minutes/week)');
+        tips.push('🥗 Follow a heart-healthy diet (low sodium, high fiber)');
+        tips.push('📊 Monitor blood pressure and cholesterol regularly');
+      }
+      
+      // General tips for all risk levels
+      tips.push('🚭 Avoid smoking and limit alcohol consumption');
+      tips.push('😴 Maintain healthy sleep patterns (7-8 hours/night)');
+      tips.push('🧘‍♀️ Practice stress management techniques');
+      tips.push('💧 Stay hydrated and maintain healthy weight');
+      
+      if (riskLevel === 'LOW') {
+        tips.push('✅ Continue current healthy lifestyle habits');
+        tips.push('📅 Schedule regular check-ups with your doctor');
+      }
+      
+      return '<ul><li>' + tips.join('</li><li>') + '</li></ul>';
+    }
+
+    // Logout
+    function logout() {
+      accessToken = '';
+      currentUser = '';
+      document.getElementById('authSection').classList.remove('hidden');
+      document.getElementById('predictionSection').classList.add('hidden');
+      document.getElementById('authResult').innerHTML = '';
+      document.getElementById('predictionResult').innerHTML = '';
+      // Clear form fields
+      document.getElementById('loginEmail').value = '';
+      document.getElementById('loginPassword').value = '';
+    }
+
+    // Demo chart - Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('trendChart');
+      if (ctx) {
+        const chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['Day -6','Day -5','Day -4','Day -3','Day -2','Day -1','Today'],
+            datasets: [{
+              label: 'Systolic BP (mmHg)',
+              data: [120, 125, 123, 130, 128, 126, 122],
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              tension: 0.3,
+              fill: false,
+            },{
+              label: 'Cholesterol (mg/dL)',
+              data: [180, 182, 179, 190, 188, 185, 180],
+              borderColor: 'rgb(54, 162, 235)',
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              tension: 0.3,
+              fill: false,
+            },{
+              label: 'Heart Rate (bpm)',
+              data: [72, 75, 70, 78, 76, 74, 73],
+              borderColor: 'rgb(75, 192, 192)',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              tension: 0.3,
+              fill: false,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: true,
+                text: '📊 Sample Patient Health Trends - Last 7 Days',
+                font: {
+                  size: 16,
+                  weight: 'bold'
+                }
+              },
+              legend: {
+                position: 'bottom'
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: false,
+                title: {
+                  display: true,
+                  text: 'Health Metrics'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Time Period'
+                }
+              }
+            },
+            interaction: {
+              intersect: false,
+              mode: 'index'
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+2025-10-01 03:51:10,947 - security_audit - WARNING - {"timestamp": "2025-09-30T22:21:10.947661", "event_type": "authentication_attempt", "user": "suyashjtiwari@outlook.com", "success": false, "details": {"email": "suyashjtiwari@outlook.com", "failure_reason": "Invalid credentials"}}
+2025-10-01 03:52:17,995 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/home/suyashtiwari/Documents/CODE/secure_heart_attack_prediction_system/venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-10-01 03:52:18,007 - security_audit - WARNING - {"timestamp": "2025-09-30T22:22:18.007502", "event_type": "user_registration", "user": "suyashjtiwari@outlook.com", "success": false, "details": {"email": "suyashjtiwari@outlook.com", "role": "Admin", "failure_reason": "password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])"}}
+2025-10-01 03:52:18,007 - root - ERROR - Registration failed for suyashjtiwari@outlook.com: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-10-01 04:07:59,833 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/home/suyashtiwari/Documents/CODE/secure_heart_attack_prediction_system/venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-10-01 04:07:59,840 - app.security - ERROR - Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-10-01 04:07:59,840 - security_audit - WARNING - {"timestamp": "2025-09-30T22:37:59.840878", "event_type": "user_registration", "user": "testuser@example.com", "success": false, "details": {"email": "testuser@example.com", "role": "Patient", "failure_reason": "Password hashing failed: Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])"}}
+2025-10-01 04:07:59,844 - security_audit - WARNING - {"timestamp": "2025-09-30T22:37:59.844049", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": false, "details": {"email": "testuser@example.com", "failure_reason": "Invalid credentials"}}
+2025-10-01 04:11:29,744 - security_audit - INFO - {"timestamp": "2025-09-30T22:41:29.744484", "event_type": "user_registration", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com", "role": "Patient"}}
+2025-10-01 04:11:29,744 - root - INFO - Registered user testuser@example.com with role Patient
+2025-10-01 04:11:29,949 - security_audit - INFO - {"timestamp": "2025-09-30T22:41:29.949711", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com"}}
+2025-10-01 04:11:29,949 - root - INFO - Successful login for user testuser@example.com
+2025-10-01 04:18:44,508 - security_audit - INFO - {"timestamp": "2025-09-30T22:48:44.507979", "event_type": "user_registration", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com", "role": "Patient"}}
+2025-10-01 04:18:44,508 - root - INFO - Registered user testuser@example.com with role Patient
+2025-10-01 04:18:44,716 - security_audit - INFO - {"timestamp": "2025-09-30T22:48:44.716494", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com"}}
+2025-10-01 04:18:44,716 - root - INFO - Successful login for user testuser@example.com
+2025-10-01 04:19:13,898 - security_audit - INFO - {"timestamp": "2025-09-30T22:49:13.898063", "event_type": "user_registration", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com", "role": "Patient"}}
+2025-10-01 04:19:13,898 - root - INFO - Registered user testuser@example.com with role Patient
+2025-10-01 04:19:14,107 - security_audit - INFO - {"timestamp": "2025-09-30T22:49:14.107164", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com"}}
+2025-10-01 04:19:14,107 - root - INFO - Successful login for user testuser@example.com
+2025-10-01 04:25:19,618 - security_audit - INFO - {"timestamp": "2025-09-30T22:55:19.618483", "event_type": "user_registration", "user": "suyashjtiwari@outlook.com", "success": true, "details": {"email": "suyashjtiwari@outlook.com", "role": "Patient"}}
+2025-10-01 04:25:19,618 - root - INFO - Registered user suyashjtiwari@outlook.com with role Patient
+2025-10-01 04:25:39,795 - security_audit - INFO - {"timestamp": "2025-09-30T22:55:39.795606", "event_type": "authentication_attempt", "user": "suyashjtiwari@outlook.com", "success": true, "details": {"email": "suyashjtiwari@outlook.com"}}
+2025-10-01 04:25:39,795 - root - INFO - Successful login for user suyashjtiwari@outlook.com
+2025-10-01 04:31:47,480 - user_activity - INFO - {"timestamp": "2025-09-30T23:01:47.480053", "user": "suyashjtiwari@outlook.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:01:47.480041"}}
+2025-10-01 04:31:47,480 - model_performance - INFO - {"timestamp": "2025-09-30T23:01:47.480330", "user": "suyashjtiwari@outlook.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8386633001822847818}
+2025-10-01 04:31:47,480 - root - INFO - Prediction by suyashjtiwari@outlook.com: Medium risk (probability: 0.3517, model: catboost)
+2025-10-01 04:37:56,963 - security_audit - INFO - {"timestamp": "2025-09-30T23:07:56.963767", "event_type": "user_registration", "user": "testuser2@example.com", "success": true, "details": {"email": "testuser2@example.com", "role": "Patient"}}
+2025-10-01 04:37:56,963 - root - INFO - Registered user testuser2@example.com with role Patient
+2025-10-01 04:37:57,169 - security_audit - INFO - {"timestamp": "2025-09-30T23:07:57.169069", "event_type": "authentication_attempt", "user": "testuser2@example.com", "success": true, "details": {"email": "testuser2@example.com"}}
+2025-10-01 04:37:57,169 - root - INFO - Successful login for user testuser2@example.com
+2025-10-01 04:37:57,174 - user_activity - INFO - {"timestamp": "2025-09-30T23:07:57.174212", "user": "testuser2@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:07:57.174207"}}
+2025-10-01 04:37:57,174 - model_performance - INFO - {"timestamp": "2025-09-30T23:07:57.174320", "user": "testuser2@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 1165084808921641305}
+2025-10-01 04:37:57,174 - root - INFO - Prediction by testuser2@example.com: Medium risk (probability: 0.5175, model: catboost)
+2025-10-01 04:40:44,053 - security_audit - WARNING - {"timestamp": "2025-09-30T23:10:44.052984", "event_type": "authentication_attempt", "user": "suyashjtiwari@outlook.com", "success": false, "details": {"email": "suyashjtiwari@outlook.com", "failure_reason": "Invalid credentials"}}
+2025-10-01 04:43:23,627 - security_audit - INFO - {"timestamp": "2025-09-30T23:13:23.627270", "event_type": "user_registration", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com", "role": "Patient"}}
+2025-10-01 04:43:23,627 - root - INFO - Registered user suyashtiwari7272@gmail.com with role Patient
+2025-10-01 04:44:14,168 - security_audit - INFO - {"timestamp": "2025-09-30T23:14:14.168784", "event_type": "authentication_attempt", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com"}}
+2025-10-01 04:44:14,168 - root - INFO - Successful login for user suyashtiwari7272@gmail.com
+2025-10-01 04:49:37,905 - security_audit - WARNING - {"timestamp": "2025-09-30T23:19:37.905174", "event_type": "authentication_attempt", "user": "testuser2@example.com", "success": false, "details": {"email": "testuser2@example.com", "failure_reason": "Invalid credentials"}}
+2025-10-01 04:50:18,943 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:18.943287", "event_type": "user_registration", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com", "role": "Patient"}}
+2025-10-01 04:50:18,943 - root - INFO - Registered user testuser3@example.com with role Patient
+2025-10-01 04:50:19,151 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:19.150984", "event_type": "authentication_attempt", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com"}}
+2025-10-01 04:50:19,151 - root - INFO - Successful login for user testuser3@example.com
+2025-10-01 04:50:19,156 - user_activity - INFO - {"timestamp": "2025-09-30T23:20:19.156501", "user": "testuser3@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:20:19.156493"}}
+2025-10-01 04:50:19,156 - model_performance - INFO - {"timestamp": "2025-09-30T23:20:19.156745", "user": "testuser3@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": -2562790359065288385}
+2025-10-01 04:50:19,156 - root - INFO - Prediction by testuser3@example.com: Medium risk (probability: 0.5175, model: catboost)
+2025-10-01 04:50:27,267 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:27.267434", "event_type": "user_registration", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com", "role": "Patient"}}
+2025-10-01 04:50:27,267 - root - INFO - Registered user testuser3@example.com with role Patient
+2025-10-01 04:50:27,471 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:27.471303", "event_type": "authentication_attempt", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com"}}
+2025-10-01 04:50:27,471 - root - INFO - Successful login for user testuser3@example.com
+2025-10-01 04:50:27,476 - user_activity - INFO - {"timestamp": "2025-09-30T23:20:27.476201", "user": "testuser3@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:20:27.476196"}}
+2025-10-01 04:50:27,476 - model_performance - INFO - {"timestamp": "2025-09-30T23:20:27.476308", "user": "testuser3@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8937149328388148377}
+2025-10-01 04:50:27,476 - root - INFO - Prediction by testuser3@example.com: Medium risk (probability: 0.5175, model: catboost)
+2025-10-01 13:45:09,337 - security_audit - INFO - {"timestamp": "2025-10-01T08:15:09.337219", "event_type": "user_registration", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com", "role": "Patient"}}
+2025-10-01 13:45:09,343 - root - INFO - Registered user suyashtiwari7272@gmail.com with role Patient
+2025-10-01 13:45:40,105 - security_audit - INFO - {"timestamp": "2025-10-01T08:15:40.105458", "event_type": "authentication_attempt", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com"}}
+2025-10-01 13:45:40,105 - root - INFO - Successful login for user suyashtiwari7272@gmail.com
+2025-10-01 13:55:05,896 - security_audit - INFO - {"timestamp": "2025-10-01T08:25:05.896469", "event_type": "user_registration", "user": "fixedtest@example.com", "success": true, "details": {"email": "fixedtest@example.com", "role": "Patient"}}
+2025-10-01 13:55:05,896 - root - INFO - Registered user fixedtest@example.com with role Patient
+2025-10-01 13:55:06,295 - security_audit - INFO - {"timestamp": "2025-10-01T08:25:06.295801", "event_type": "authentication_attempt", "user": "fixedtest@example.com", "success": true, "details": {"email": "fixedtest@example.com"}}
+2025-10-01 13:55:06,296 - root - INFO - Successful login for user fixedtest@example.com
+2025-10-01 13:55:06,314 - user_activity - INFO - {"timestamp": "2025-10-01T08:25:06.314391", "user": "fixedtest@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-01T08:25:06.314380"}}
+2025-10-01 13:55:06,314 - model_performance - INFO - {"timestamp": "2025-10-01T08:25:06.314753", "user": "fixedtest@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": -105526608596762407}
+2025-10-01 13:55:06,315 - root - INFO - Prediction by fixedtest@example.com: Medium risk (probability: 0.5175, model: catboost)
+2025-10-01 13:55:06,339 - user_activity - INFO - {"timestamp": "2025-10-01T08:25:06.339308", "user": "fixedtest@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-01T08:25:06.339284"}}
+2025-10-01 13:55:06,339 - model_performance - INFO - {"timestamp": "2025-10-01T08:25:06.339770", "user": "fixedtest@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8510650803860624385}
+2025-10-01 13:55:06,340 - root - INFO - Prediction by fixedtest@example.com: Medium risk (probability: 0.4175, model: catboost)
+2025-10-01 13:56:02,650 - security_audit - WARNING - {"timestamp": "2025-10-01T08:26:02.649945", "event_type": "authentication_attempt", "user": "bapariv106@protonza.com", "success": false, "details": {"email": "bapariv106@protonza.com", "failure_reason": "Invalid credentials"}}
+2025-10-01 13:56:30,442 - security_audit - WARNING - {"timestamp": "2025-10-01T08:26:30.442478", "event_type": "user_registration", "user": "bapariv106@protonza.com", "success": false, "details": {"email": "bapariv106@protonza.com", "role": "Patient", "failure_reason": "Password validation failed: Password must contain at least one uppercase letter, lowercase letter, digit, and special character"}}
+2025-10-01 13:56:51,991 - security_audit - INFO - {"timestamp": "2025-10-01T08:26:51.991737", "event_type": "user_registration", "user": "bapariv106@protonza.com", "success": true, "details": {"email": "bapariv106@protonza.com", "role": "Patient"}}
+2025-10-01 13:56:51,991 - root - INFO - Registered user bapariv106@protonza.com with role Patient
+2025-10-01 13:57:06,797 - security_audit - INFO - {"timestamp": "2025-10-01T08:27:06.797217", "event_type": "authentication_attempt", "user": "bapariv106@protonza.com", "success": true, "details": {"email": "bapariv106@protonza.com"}}
+2025-10-01 13:57:06,797 - root - INFO - Successful login for user bapariv106@protonza.com
+2025-10-01 13:59:46,083 - user_activity - INFO - {"timestamp": "2025-10-01T08:29:46.083243", "user": "bapariv106@protonza.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-01T08:29:46.083230"}}
+2025-10-01 13:59:46,083 - model_performance - INFO - {"timestamp": "2025-10-01T08:29:46.083516", "user": "bapariv106@protonza.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8424699181355688634}
+2025-10-01 13:59:46,083 - root - INFO - Prediction by bapariv106@protonza.com: Medium risk (probability: 0.5761, model: catboost)
