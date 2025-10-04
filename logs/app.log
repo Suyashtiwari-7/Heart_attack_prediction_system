@@ -1,87 +1,389 @@
-2025-10-01 03:51:10,947 - security_audit - WARNING - {"timestamp": "2025-09-30T22:21:10.947661", "event_type": "authentication_attempt", "user": "suyashjtiwari@outlook.com", "success": false, "details": {"email": "suyashjtiwari@outlook.com", "failure_reason": "Invalid credentials"}}
-2025-10-01 03:52:17,995 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
-Traceback (most recent call last):
-  File "/home/suyashtiwari/Documents/CODE/secure_heart_attack_prediction_system/venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
-    version = _bcrypt.__about__.__version__
-              ^^^^^^^^^^^^^^^^^
-AttributeError: module 'bcrypt' has no attribute '__about__'
-2025-10-01 03:52:18,007 - security_audit - WARNING - {"timestamp": "2025-09-30T22:22:18.007502", "event_type": "user_registration", "user": "suyashjtiwari@outlook.com", "success": false, "details": {"email": "suyashjtiwari@outlook.com", "role": "Admin", "failure_reason": "password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])"}}
-2025-10-01 03:52:18,007 - root - ERROR - Registration failed for suyashjtiwari@outlook.com: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
-2025-10-01 04:07:59,833 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
-Traceback (most recent call last):
-  File "/home/suyashtiwari/Documents/CODE/secure_heart_attack_prediction_system/venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
-    version = _bcrypt.__about__.__version__
-              ^^^^^^^^^^^^^^^^^
-AttributeError: module 'bcrypt' has no attribute '__about__'
-2025-10-01 04:07:59,840 - app.security - ERROR - Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
-2025-10-01 04:07:59,840 - security_audit - WARNING - {"timestamp": "2025-09-30T22:37:59.840878", "event_type": "user_registration", "user": "testuser@example.com", "success": false, "details": {"email": "testuser@example.com", "role": "Patient", "failure_reason": "Password hashing failed: Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])"}}
-2025-10-01 04:07:59,844 - security_audit - WARNING - {"timestamp": "2025-09-30T22:37:59.844049", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": false, "details": {"email": "testuser@example.com", "failure_reason": "Invalid credentials"}}
-2025-10-01 04:11:29,744 - security_audit - INFO - {"timestamp": "2025-09-30T22:41:29.744484", "event_type": "user_registration", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com", "role": "Patient"}}
-2025-10-01 04:11:29,744 - root - INFO - Registered user testuser@example.com with role Patient
-2025-10-01 04:11:29,949 - security_audit - INFO - {"timestamp": "2025-09-30T22:41:29.949711", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com"}}
-2025-10-01 04:11:29,949 - root - INFO - Successful login for user testuser@example.com
-2025-10-01 04:18:44,508 - security_audit - INFO - {"timestamp": "2025-09-30T22:48:44.507979", "event_type": "user_registration", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com", "role": "Patient"}}
-2025-10-01 04:18:44,508 - root - INFO - Registered user testuser@example.com with role Patient
-2025-10-01 04:18:44,716 - security_audit - INFO - {"timestamp": "2025-09-30T22:48:44.716494", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com"}}
-2025-10-01 04:18:44,716 - root - INFO - Successful login for user testuser@example.com
-2025-10-01 04:19:13,898 - security_audit - INFO - {"timestamp": "2025-09-30T22:49:13.898063", "event_type": "user_registration", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com", "role": "Patient"}}
-2025-10-01 04:19:13,898 - root - INFO - Registered user testuser@example.com with role Patient
-2025-10-01 04:19:14,107 - security_audit - INFO - {"timestamp": "2025-09-30T22:49:14.107164", "event_type": "authentication_attempt", "user": "testuser@example.com", "success": true, "details": {"email": "testuser@example.com"}}
-2025-10-01 04:19:14,107 - root - INFO - Successful login for user testuser@example.com
-2025-10-01 04:25:19,618 - security_audit - INFO - {"timestamp": "2025-09-30T22:55:19.618483", "event_type": "user_registration", "user": "suyashjtiwari@outlook.com", "success": true, "details": {"email": "suyashjtiwari@outlook.com", "role": "Patient"}}
-2025-10-01 04:25:19,618 - root - INFO - Registered user suyashjtiwari@outlook.com with role Patient
-2025-10-01 04:25:39,795 - security_audit - INFO - {"timestamp": "2025-09-30T22:55:39.795606", "event_type": "authentication_attempt", "user": "suyashjtiwari@outlook.com", "success": true, "details": {"email": "suyashjtiwari@outlook.com"}}
-2025-10-01 04:25:39,795 - root - INFO - Successful login for user suyashjtiwari@outlook.com
-2025-10-01 04:31:47,480 - user_activity - INFO - {"timestamp": "2025-09-30T23:01:47.480053", "user": "suyashjtiwari@outlook.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:01:47.480041"}}
-2025-10-01 04:31:47,480 - model_performance - INFO - {"timestamp": "2025-09-30T23:01:47.480330", "user": "suyashjtiwari@outlook.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8386633001822847818}
-2025-10-01 04:31:47,480 - root - INFO - Prediction by suyashjtiwari@outlook.com: Medium risk (probability: 0.3517, model: catboost)
-2025-10-01 04:37:56,963 - security_audit - INFO - {"timestamp": "2025-09-30T23:07:56.963767", "event_type": "user_registration", "user": "testuser2@example.com", "success": true, "details": {"email": "testuser2@example.com", "role": "Patient"}}
-2025-10-01 04:37:56,963 - root - INFO - Registered user testuser2@example.com with role Patient
-2025-10-01 04:37:57,169 - security_audit - INFO - {"timestamp": "2025-09-30T23:07:57.169069", "event_type": "authentication_attempt", "user": "testuser2@example.com", "success": true, "details": {"email": "testuser2@example.com"}}
-2025-10-01 04:37:57,169 - root - INFO - Successful login for user testuser2@example.com
-2025-10-01 04:37:57,174 - user_activity - INFO - {"timestamp": "2025-09-30T23:07:57.174212", "user": "testuser2@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:07:57.174207"}}
-2025-10-01 04:37:57,174 - model_performance - INFO - {"timestamp": "2025-09-30T23:07:57.174320", "user": "testuser2@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 1165084808921641305}
-2025-10-01 04:37:57,174 - root - INFO - Prediction by testuser2@example.com: Medium risk (probability: 0.5175, model: catboost)
-2025-10-01 04:40:44,053 - security_audit - WARNING - {"timestamp": "2025-09-30T23:10:44.052984", "event_type": "authentication_attempt", "user": "suyashjtiwari@outlook.com", "success": false, "details": {"email": "suyashjtiwari@outlook.com", "failure_reason": "Invalid credentials"}}
-2025-10-01 04:43:23,627 - security_audit - INFO - {"timestamp": "2025-09-30T23:13:23.627270", "event_type": "user_registration", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com", "role": "Patient"}}
-2025-10-01 04:43:23,627 - root - INFO - Registered user suyashtiwari7272@gmail.com with role Patient
-2025-10-01 04:44:14,168 - security_audit - INFO - {"timestamp": "2025-09-30T23:14:14.168784", "event_type": "authentication_attempt", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com"}}
-2025-10-01 04:44:14,168 - root - INFO - Successful login for user suyashtiwari7272@gmail.com
-2025-10-01 04:49:37,905 - security_audit - WARNING - {"timestamp": "2025-09-30T23:19:37.905174", "event_type": "authentication_attempt", "user": "testuser2@example.com", "success": false, "details": {"email": "testuser2@example.com", "failure_reason": "Invalid credentials"}}
-2025-10-01 04:50:18,943 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:18.943287", "event_type": "user_registration", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com", "role": "Patient"}}
-2025-10-01 04:50:18,943 - root - INFO - Registered user testuser3@example.com with role Patient
-2025-10-01 04:50:19,151 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:19.150984", "event_type": "authentication_attempt", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com"}}
-2025-10-01 04:50:19,151 - root - INFO - Successful login for user testuser3@example.com
-2025-10-01 04:50:19,156 - user_activity - INFO - {"timestamp": "2025-09-30T23:20:19.156501", "user": "testuser3@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:20:19.156493"}}
-2025-10-01 04:50:19,156 - model_performance - INFO - {"timestamp": "2025-09-30T23:20:19.156745", "user": "testuser3@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": -2562790359065288385}
-2025-10-01 04:50:19,156 - root - INFO - Prediction by testuser3@example.com: Medium risk (probability: 0.5175, model: catboost)
-2025-10-01 04:50:27,267 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:27.267434", "event_type": "user_registration", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com", "role": "Patient"}}
-2025-10-01 04:50:27,267 - root - INFO - Registered user testuser3@example.com with role Patient
-2025-10-01 04:50:27,471 - security_audit - INFO - {"timestamp": "2025-09-30T23:20:27.471303", "event_type": "authentication_attempt", "user": "testuser3@example.com", "success": true, "details": {"email": "testuser3@example.com"}}
-2025-10-01 04:50:27,471 - root - INFO - Successful login for user testuser3@example.com
-2025-10-01 04:50:27,476 - user_activity - INFO - {"timestamp": "2025-09-30T23:20:27.476201", "user": "testuser3@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-09-30T23:20:27.476196"}}
-2025-10-01 04:50:27,476 - model_performance - INFO - {"timestamp": "2025-09-30T23:20:27.476308", "user": "testuser3@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8937149328388148377}
-2025-10-01 04:50:27,476 - root - INFO - Prediction by testuser3@example.com: Medium risk (probability: 0.5175, model: catboost)
-2025-10-01 13:45:09,337 - security_audit - INFO - {"timestamp": "2025-10-01T08:15:09.337219", "event_type": "user_registration", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com", "role": "Patient"}}
-2025-10-01 13:45:09,343 - root - INFO - Registered user suyashtiwari7272@gmail.com with role Patient
-2025-10-01 13:45:40,105 - security_audit - INFO - {"timestamp": "2025-10-01T08:15:40.105458", "event_type": "authentication_attempt", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com"}}
-2025-10-01 13:45:40,105 - root - INFO - Successful login for user suyashtiwari7272@gmail.com
-2025-10-01 13:55:05,896 - security_audit - INFO - {"timestamp": "2025-10-01T08:25:05.896469", "event_type": "user_registration", "user": "fixedtest@example.com", "success": true, "details": {"email": "fixedtest@example.com", "role": "Patient"}}
-2025-10-01 13:55:05,896 - root - INFO - Registered user fixedtest@example.com with role Patient
-2025-10-01 13:55:06,295 - security_audit - INFO - {"timestamp": "2025-10-01T08:25:06.295801", "event_type": "authentication_attempt", "user": "fixedtest@example.com", "success": true, "details": {"email": "fixedtest@example.com"}}
-2025-10-01 13:55:06,296 - root - INFO - Successful login for user fixedtest@example.com
-2025-10-01 13:55:06,314 - user_activity - INFO - {"timestamp": "2025-10-01T08:25:06.314391", "user": "fixedtest@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-01T08:25:06.314380"}}
-2025-10-01 13:55:06,314 - model_performance - INFO - {"timestamp": "2025-10-01T08:25:06.314753", "user": "fixedtest@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": -105526608596762407}
-2025-10-01 13:55:06,315 - root - INFO - Prediction by fixedtest@example.com: Medium risk (probability: 0.5175, model: catboost)
-2025-10-01 13:55:06,339 - user_activity - INFO - {"timestamp": "2025-10-01T08:25:06.339308", "user": "fixedtest@example.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-01T08:25:06.339284"}}
-2025-10-01 13:55:06,339 - model_performance - INFO - {"timestamp": "2025-10-01T08:25:06.339770", "user": "fixedtest@example.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8510650803860624385}
-2025-10-01 13:55:06,340 - root - INFO - Prediction by fixedtest@example.com: Medium risk (probability: 0.4175, model: catboost)
-2025-10-01 13:56:02,650 - security_audit - WARNING - {"timestamp": "2025-10-01T08:26:02.649945", "event_type": "authentication_attempt", "user": "bapariv106@protonza.com", "success": false, "details": {"email": "bapariv106@protonza.com", "failure_reason": "Invalid credentials"}}
-2025-10-01 13:56:30,442 - security_audit - WARNING - {"timestamp": "2025-10-01T08:26:30.442478", "event_type": "user_registration", "user": "bapariv106@protonza.com", "success": false, "details": {"email": "bapariv106@protonza.com", "role": "Patient", "failure_reason": "Password validation failed: Password must contain at least one uppercase letter, lowercase letter, digit, and special character"}}
-2025-10-01 13:56:51,991 - security_audit - INFO - {"timestamp": "2025-10-01T08:26:51.991737", "event_type": "user_registration", "user": "bapariv106@protonza.com", "success": true, "details": {"email": "bapariv106@protonza.com", "role": "Patient"}}
-2025-10-01 13:56:51,991 - root - INFO - Registered user bapariv106@protonza.com with role Patient
-2025-10-01 13:57:06,797 - security_audit - INFO - {"timestamp": "2025-10-01T08:27:06.797217", "event_type": "authentication_attempt", "user": "bapariv106@protonza.com", "success": true, "details": {"email": "bapariv106@protonza.com"}}
-2025-10-01 13:57:06,797 - root - INFO - Successful login for user bapariv106@protonza.com
-2025-10-01 13:59:46,083 - user_activity - INFO - {"timestamp": "2025-10-01T08:29:46.083243", "user": "bapariv106@protonza.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-01T08:29:46.083230"}}
-2025-10-01 13:59:46,083 - model_performance - INFO - {"timestamp": "2025-10-01T08:29:46.083516", "user": "bapariv106@protonza.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": 8424699181355688634}
-2025-10-01 13:59:46,083 - root - INFO - Prediction by bapariv106@protonza.com: Medium risk (probability: 0.5761, model: catboost)
+2025-10-05 05:19:23,322 - watchfiles.main - INFO - 3 changes detected
+2025-10-05 05:19:23,673 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:24,024 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:24,375 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:24,726 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:25,077 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:25,428 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:25,779 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:26,130 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:26,482 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:26,833 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:27,184 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:27,535 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:27,886 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:28,237 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:28,588 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:28,939 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:29,290 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:29,641 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:29,993 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:30,344 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:30,695 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:31,046 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:31,397 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:31,749 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:32,100 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:32,452 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:32,803 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:33,154 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:33,505 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:33,857 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:34,208 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:34,559 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:34,910 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:35,261 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:35,612 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:35,963 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:36,314 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:36,665 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:37,016 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:37,368 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:37,719 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:38,070 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:38,421 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:38,772 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:39,123 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:39,474 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:39,825 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:40,176 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:40,527 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:40,878 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:41,229 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:41,580 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:41,931 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:42,282 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:42,634 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:42,985 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:43,336 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:43,687 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:44,038 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:44,389 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:44,740 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:45,092 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:45,443 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:45,794 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:46,145 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:46,496 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:46,847 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:47,199 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:47,550 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:47,901 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:48,252 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:48,603 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:48,954 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:49,305 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:49,656 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:50,007 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:50,358 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:50,709 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:51,060 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:51,411 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:51,763 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:52,114 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:52,465 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:52,816 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:53,167 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:53,518 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:53,869 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:54,220 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:54,571 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:54,923 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:55,274 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:55,625 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:55,976 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:56,327 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:56,678 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:57,030 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:57,380 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:57,731 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:58,082 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:58,432 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:58,783 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:59,134 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:59,485 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:19:59,836 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:00,187 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:00,538 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:00,889 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:01,240 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:01,591 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:01,942 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:02,293 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:02,644 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:02,995 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:03,346 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:03,697 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:04,048 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:04,399 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:04,750 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:05,101 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:05,451 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:05,802 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:06,153 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:06,504 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:06,855 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:07,206 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:07,557 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:07,908 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:08,259 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:08,610 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:08,961 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:09,312 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:09,663 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:10,014 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:10,365 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:10,716 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:11,066 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:11,417 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:11,768 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:12,119 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:12,470 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:12,820 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:13,171 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:13,522 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:13,873 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:14,224 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:14,575 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:14,925 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:15,276 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:15,627 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:15,978 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:16,328 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:16,679 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:17,030 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:17,381 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:17,732 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:18,083 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:18,434 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:18,785 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:19,136 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:19,486 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:19,837 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:20,188 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:20,539 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:20,889 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:21,240 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:21,591 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:21,942 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:22,293 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:22,644 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:22,994 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:23,345 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:23,696 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:24,046 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:24,397 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:24,748 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:25,099 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:25,450 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:25,801 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:26,152 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:26,503 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:26,853 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:27,204 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:27,555 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:27,906 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:28,257 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:28,608 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:28,959 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:29,311 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:29,662 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:30,013 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:30,364 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:30,716 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:31,067 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:31,418 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:31,769 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:32,121 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:32,472 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:32,823 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:33,175 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:33,526 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:33,877 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:34,227 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:34,578 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:34,929 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:35,280 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:35,631 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:35,982 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:36,333 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:36,684 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:37,035 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:37,387 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:37,738 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:38,089 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:38,440 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:38,791 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:39,143 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:39,494 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:39,845 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:40,196 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:40,548 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:40,899 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:41,250 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:41,601 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:41,953 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:42,304 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:42,655 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:43,006 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:43,357 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:43,709 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:44,060 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:44,411 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:44,762 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:45,113 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:45,464 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:45,815 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:46,166 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:46,517 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:46,868 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:47,220 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:47,571 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:47,922 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:48,273 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:48,625 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:48,976 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:49,326 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:49,677 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:50,028 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:50,379 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:50,730 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:51,081 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:51,431 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:51,782 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:52,133 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:52,484 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:52,837 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:53,187 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:53,538 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:53,889 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:54,240 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:54,591 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:54,942 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:55,293 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:55,643 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:55,995 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:56,346 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:56,697 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:57,048 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:57,399 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:57,750 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:58,101 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:58,452 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:58,803 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:59,154 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:59,505 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:20:59,856 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:00,207 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:00,558 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:00,959 - watchfiles.main - INFO - 2 changes detected
+2025-10-05 05:21:01,310 - watchfiles.main - INFO - 2 changes detected
+2025-10-05 05:21:01,661 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:02,012 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:02,363 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:02,714 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:03,065 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:03,415 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:03,766 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:04,117 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:04,468 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:04,819 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:05,170 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:05,521 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:05,872 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:06,223 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:06,574 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:06,925 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:07,276 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:07,627 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:07,979 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:08,329 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:08,681 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:09,032 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:09,383 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:09,734 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:10,085 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:10,436 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:10,787 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:11,138 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:11,489 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:11,840 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:12,191 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:12,542 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:12,893 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:13,244 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:13,595 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:13,946 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:14,297 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:14,648 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:14,999 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:15,350 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:15,701 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:16,052 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:16,403 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:16,754 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:17,105 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:17,456 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:17,807 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:18,159 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:18,510 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:18,860 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:19,212 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:19,562 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:19,913 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:20,264 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:20,615 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:20,966 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:21,317 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:21,668 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:22,019 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:22,370 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:22,721 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:23,072 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:23,423 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:23,774 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:24,125 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:24,476 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:24,827 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:25,178 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:25,529 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:25,880 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:26,231 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:26,582 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:26,933 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:27,284 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:27,635 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:27,986 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:28,337 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:28,688 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:29,039 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:29,390 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:29,741 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:30,092 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:30,443 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:30,794 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:31,145 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:31,496 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:31,847 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:32,199 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:32,550 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:32,901 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:33,252 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:33,603 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:33,955 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:34,306 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:34,657 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:35,008 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:35,360 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:35,711 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:36,062 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:36,413 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:36,764 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:37,115 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:37,466 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:37,817 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:38,167 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:38,518 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:38,869 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:39,220 - watchfiles.main - INFO - 1 change detected
+2025-10-05 05:21:39,572 - watchfiles.main - INFO - 1 change detected
