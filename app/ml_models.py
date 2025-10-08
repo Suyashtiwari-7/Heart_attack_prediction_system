@@ -32,8 +32,23 @@ class HeartAttackPredictor:
             if os.path.exists(model_path):
                 self.model_artifacts = joblib.load(model_path)
                 self.is_loaded = True
-                logger.info(f"✅ Loaded {self.model_artifacts['model_name']} model "
-                           f"(AUC: {self.model_artifacts['model_score']:.4f})")
+                
+                # Log the winning model
+                model_name = self.model_artifacts['model_name']
+                model_score = self.model_artifacts['model_score']
+                
+                logger.info(f"✅ Loaded {model_name.upper()} model (AUC: {model_score:.4f})")
+                
+                # Log comparison data if available
+                if 'comparison_data' in self.model_artifacts:
+                    logger.info("📊 Model comparison results:")
+                    for model_data in self.model_artifacts['comparison_data']:
+                        name = model_data['Model']
+                        acc = model_data['Accuracy']
+                        auc = model_data['AUC Score']
+                        status = "🏆 WINNER" if name.lower() == model_name else ""
+                        logger.info(f"   {name:<10} Acc: {acc:.3f} AUC: {auc:.3f} {status}")
+                
             else:
                 logger.warning(f"⚠️  Model file not found: {model_path}")
                 logger.warning("Using fallback simple prediction method")

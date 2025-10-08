@@ -1,0 +1,1 @@
+2025-10-08 20:40:24,411 - model_performance - INFO - {"timestamp": "2025-10-08T15:10:24.411019", "user": "suyashtiwari7272@gmail.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": -255998407060680594}

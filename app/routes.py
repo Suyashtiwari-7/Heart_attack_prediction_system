@@ -252,3 +252,13 @@ def predict(payload: PredictModel, user: str = Depends(get_current_user_from_hea
             status_code=500, 
             detail=f"Prediction failed: {str(e)}"
         )
+
+@router.get("/health")
+def health_check():
+    """Health check endpoint"""
+    return {
+        "status": "healthy",
+        "service": "Heart Attack Prediction System",
+        "model_loaded": predictor.is_loaded,
+        "timestamp": datetime.utcnow().isoformat()
+    }

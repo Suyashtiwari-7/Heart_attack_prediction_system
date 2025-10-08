@@ -6,8 +6,9 @@ This script:
 - Loads the UCI heart disease dataset
 - Performs comprehensive preprocessing
 - Trains XGBoost, LightGBM and CatBoost models
-- Evaluates and saves the best performing model
-- Saves preprocessing components for production use
+- Evaluates and compares all models using multiple metrics
+- Creates visualization comparing model performance
+- Saves the best performing model with full comparison report
 """
 
 import os
@@ -15,12 +16,18 @@ import glob
 import pandas as pd
 import numpy as np
 import joblib
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.metrics import roc_auc_score, classification_report, confusion_matrix
+from sklearn.metrics import roc_auc_score, classification_report, confusion_matrix, accuracy_score
 from sklearn.ensemble import VotingClassifier
 import warnings
 warnings.filterwarnings('ignore')
+
+# Set up plotting style
+plt.style.use('seaborn-v0_8' if 'seaborn-v0_8' in plt.style.available else 'default')
+sns.set_palette("husl")
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
@@ -224,13 +231,145 @@ if len(models) > 1:
 
 # Select and save the best model
 if model_scores:
-    best_model_name = max(model_scores, key=model_scores.get)
+    print("\n" + "="*60)
+    print("🏆 MODEL PERFORMANCE COMPARISON")
+    print("="*60)
+    
+    # Create comprehensive comparison DataFrame
+    comparison_data = []
+    
+    for model_name, model in models.items():
+        if model_name == 'ensemble':
+            continue  # Skip ensemble for individual model comparison
+            
+        # Get predictions
+        if model_name == 'catboost':
+            y_pred = model.predict(X_test)
+            y_pred_proba = model.predict_proba(X_test)[:, 1]
+        else:
+            y_pred = model.predict(X_test_scaled)
+            y_pred_proba = model.predict_proba(X_test_scaled)[:, 1]
+        
+        # Calculate metrics
+        accuracy = accuracy_score(y_test, y_pred)
+        auc = roc_auc_score(y_test, y_pred_proba)
+        
+        comparison_data.append({
+            'Model': model_name.upper(),
+            'Accuracy': accuracy,
+            'AUC Score': auc,
+            'CV Mean': None  # Will fill this later
+        })
+    
+    # Convert to DataFrame for easy display
+    comparison_df = pd.DataFrame(comparison_data)
+    comparison_df = comparison_df.sort_values('AUC Score', ascending=False)
+    
+    # Print comparison table
+    print("\n📊 PERFORMANCE METRICS COMPARISON:")
+    print("-" * 50)
+    print(f"{'Model':<15} {'Accuracy':<12} {'AUC Score':<12}")
+    print("-" * 50)
+    
+    for _, row in comparison_df.iterrows():
+        print(f"{row['Model']:<15} {row['Accuracy']:<12.4f} {row['AUC Score']:<12.4f}")
+    
+    # Find best model
+    best_model_name = comparison_df.iloc[0]['Model'].lower()
+    best_accuracy = comparison_df.iloc[0]['Accuracy']
+    best_auc = comparison_df.iloc[0]['AUC Score']
+    
+    print("-" * 50)
+    print(f"🥇 BEST MODEL: {best_model_name.upper()}")
+    print(f"   📈 Accuracy: {best_accuracy:.4f}")
+    print(f"   📊 AUC Score: {best_auc:.4f}")
+    print("-" * 50)
+    
+    # Create visualization
+    print("\n📈 Creating performance visualization...")
+    
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+    
+    # Accuracy comparison
+    bars1 = ax1.bar(comparison_df['Model'], comparison_df['Accuracy'], 
+                    color=['#FF6B6B', '#4ECDC4', '#45B7D1'])
+    ax1.set_title('Model Accuracy Comparison', fontsize=14, fontweight='bold')
+    ax1.set_ylabel('Accuracy Score', fontsize=12)
+    ax1.set_ylim(0, 1)
+    
+    # Add value labels on bars
+    for bar, value in zip(bars1, comparison_df['Accuracy']):
+        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
+                f'{value:.3f}', ha='center', va='bottom', fontweight='bold')
+    
+    # Highlight best model
+    best_idx = comparison_df['Model'].tolist().index(best_model_name.upper())
+    bars1[best_idx].set_color('#FFD93D')
+    bars1[best_idx].set_edgecolor('#FF6B35')
+    bars1[best_idx].set_linewidth(3)
+    
+    # AUC Score comparison
+    bars2 = ax2.bar(comparison_df['Model'], comparison_df['AUC Score'], 
+                    color=['#FF6B6B', '#4ECDC4', '#45B7D1'])
+    ax2.set_title('Model AUC Score Comparison', fontsize=14, fontweight='bold')
+    ax2.set_ylabel('AUC Score', fontsize=12)
+    ax2.set_ylim(0, 1)
+    
+    # Add value labels on bars
+    for bar, value in zip(bars2, comparison_df['AUC Score']):
+        ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
+                f'{value:.3f}', ha='center', va='bottom', fontweight='bold')
+    
+    # Highlight best model
+    bars2[best_idx].set_color('#FFD93D')
+    bars2[best_idx].set_edgecolor('#FF6B35')
+    bars2[best_idx].set_linewidth(3)
+    
+    plt.tight_layout()
+    
+    # Save the plot
+    plot_path = os.path.join(MODEL_DIR, "model_comparison.png")
+    plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+    print(f"� Visualization saved to: {plot_path}")
+    
+    # Show the plot briefly
+    plt.show(block=False)
+    plt.pause(2)  # Display for 2 seconds
+    plt.close()
+    
+    # Detailed classification reports for all models
+    print(f"\n📋 DETAILED CLASSIFICATION REPORTS:")
+    print("="*60)
+    
+    for model_name, model in models.items():
+        if model_name == 'ensemble':
+            continue
+            
+        print(f"\n🔍 {model_name.upper()} Classification Report:")
+        print("-" * 40)
+        
+        # Get predictions
+        if model_name == 'catboost':
+            y_pred = model.predict(X_test)
+        else:
+            y_pred = model.predict(X_test_scaled)
+        
+        print(classification_report(y_test, y_pred))
+    
+    # Save the best model
     best_model = models[best_model_name]
     best_score = model_scores[best_model_name]
     
-    print(f"\n🏆 Best Model: {best_model_name} (AUC: {best_score:.4f})")
+    print(f"\n💾 SAVING BEST MODEL: {best_model_name.upper()}")
     
-    # Save the best model and preprocessing components
+    # Highlight XGBoost if it's the best
+    if best_model_name == 'xgboost':
+        print("🌟" * 20)
+        print("🚀 XGBOOST IS THE CHAMPION! 🚀")
+        print("   XGBoost has achieved the highest performance")
+        print("   and will be used as the primary model!")
+        print("🌟" * 20)
+    
     model_artifacts = {
         'model': best_model,
         'scaler': scaler,
@@ -238,36 +377,58 @@ if model_scores:
         'feature_names': feature_names,
         'model_name': best_model_name,
         'model_score': best_score,
-        'use_scaled_data': best_model_name != 'catboost'
+        'use_scaled_data': best_model_name != 'catboost',
+        'comparison_data': comparison_df.to_dict('records'),
+        'all_models': models  # Save all models for ensemble use
     }
     
     joblib.dump(model_artifacts, os.path.join(MODEL_DIR, "best_model.joblib"))
-    print(f"💾 Model artifacts saved to: {os.path.join(MODEL_DIR, 'best_model.joblib')}")
+    print(f"✅ Model artifacts saved to: {os.path.join(MODEL_DIR, 'best_model.joblib')}")
     
-    # Generate classification report
-    if best_model_name == 'catboost':
-        y_pred = best_model.predict(X_test)
-    else:
-        y_pred = best_model.predict(X_test_scaled)
+    # Save comparison results
+    comparison_df.to_csv(os.path.join(MODEL_DIR, "model_comparison.csv"), index=False)
+    print(f"📊 Comparison results saved to: {os.path.join(MODEL_DIR, 'model_comparison.csv')}")
     
-    print("\n📊 Classification Report:")
-    print(classification_report(y_test, y_pred))
+    # Feature importance analysis
+    print(f"\n🔍 FEATURE IMPORTANCE ANALYSIS ({best_model_name.upper()}):")
+    print("-" * 50)
     
-    print("\n🎯 Confusion Matrix:")
-    print(confusion_matrix(y_test, y_pred))
-    
-    # Feature importance (if available)
     if hasattr(best_model, 'feature_importances_'):
         importance_df = pd.DataFrame({
             'feature': feature_names,
             'importance': best_model.feature_importances_
         }).sort_values('importance', ascending=False)
         
-        print("\n🔍 Top 10 Feature Importances:")
-        print(importance_df.head(10).to_string(index=False))
+        print("🏆 Top 10 Most Important Features:")
+        for i, (_, row) in enumerate(importance_df.head(10).iterrows(), 1):
+            print(f"  {i:2d}. {row['feature']:<20} {row['importance']:.4f}")
         
         # Save feature importance
         importance_df.to_csv(os.path.join(MODEL_DIR, "feature_importance.csv"), index=False)
+        
+        # Create feature importance plot
+        plt.figure(figsize=(12, 8))
+        top_features = importance_df.head(10)
+        bars = plt.barh(range(len(top_features)), top_features['importance'], 
+                       color=plt.cm.viridis(np.linspace(0, 1, len(top_features))))
+        plt.yticks(range(len(top_features)), top_features['feature'])
+        plt.xlabel('Feature Importance', fontsize=12)
+        plt.title(f'Top 10 Feature Importances - {best_model_name.upper()} Model', 
+                 fontsize=14, fontweight='bold')
+        plt.gca().invert_yaxis()
+        
+        # Add value labels
+        for i, (bar, value) in enumerate(zip(bars, top_features['importance'])):
+            plt.text(value + 0.001, bar.get_y() + bar.get_height()/2, 
+                    f'{value:.3f}', va='center', fontweight='bold')
+        
+        plt.tight_layout()
+        feature_plot_path = os.path.join(MODEL_DIR, "feature_importance.png")
+        plt.savefig(feature_plot_path, dpi=300, bbox_inches='tight')
+        print(f"📊 Feature importance plot saved to: {feature_plot_path}")
+        plt.show(block=False)
+        plt.pause(2)
+        plt.close()
     
 else:
     print("❌ No models were successfully trained!")

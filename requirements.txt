@@ -12,3 +12,5 @@ lightgbm
 catboost
 cx_Oracle
 python-dotenv
+matplotlib
+seaborn

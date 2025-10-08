@@ -1,0 +1,2 @@
+2025-10-08 20:39:28,680 - SECURITY - INFO - {"timestamp": "2025-10-08T15:09:28.680290", "event_type": "user_registration", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com", "role": "Patient"}}
+2025-10-08 20:39:45,611 - SECURITY - INFO - {"timestamp": "2025-10-08T15:09:45.611199", "event_type": "authentication_attempt", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com"}}

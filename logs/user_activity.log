@@ -1,0 +1,1 @@
+2025-10-08 20:40:24,410 - user_activity - INFO - {"timestamp": "2025-10-08T15:10:24.410893", "user": "suyashtiwari7272@gmail.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-08T15:10:24.410888"}}

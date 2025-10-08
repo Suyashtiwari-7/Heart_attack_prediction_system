@@ -1,0 +1,7 @@
+2025-10-08 20:39:28,680 - security_audit - INFO - {"timestamp": "2025-10-08T15:09:28.680290", "event_type": "user_registration", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com", "role": "Patient"}}
+2025-10-08 20:39:28,680 - root - INFO - Registered user suyashtiwari7272@gmail.com with role Patient
+2025-10-08 20:39:45,611 - security_audit - INFO - {"timestamp": "2025-10-08T15:09:45.611199", "event_type": "authentication_attempt", "user": "suyashtiwari7272@gmail.com", "success": true, "details": {"email": "suyashtiwari7272@gmail.com"}}
+2025-10-08 20:39:45,611 - root - INFO - Successful login for user suyashtiwari7272@gmail.com
+2025-10-08 20:40:24,410 - user_activity - INFO - {"timestamp": "2025-10-08T15:10:24.410893", "user": "suyashtiwari7272@gmail.com", "action": "prediction_request", "details": {"model_used": "catboost", "risk_level": "Medium", "timestamp": "2025-10-08T15:10:24.410888"}}
+2025-10-08 20:40:24,411 - model_performance - INFO - {"timestamp": "2025-10-08T15:10:24.411019", "user": "suyashtiwari7272@gmail.com", "model_name": "catboost", "risk_level": "Medium", "confidence": 0.9261119081779052, "patient_data_hash": -255998407060680594}
+2025-10-08 20:40:24,411 - root - INFO - Prediction by suyashtiwari7272@gmail.com: Medium risk (probability: 0.4976, model: catboost)
